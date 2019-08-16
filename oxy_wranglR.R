@@ -11,7 +11,8 @@
 #' @details The curated data consists of a csv file that has edited data 
 #'     appended to it on a weekly basis. The function expects 4 columns:
 #'     Site Code, Date, Depth and ODO and the file should have the naming 
-#'     convention: "River_yyyy-yy_oxy_kpi.csv".
+#'     convention: "River_yyyy-yy_oxy_kpi.csv". Please NOTE that the Date 
+#'     column requires the format "dd-mm-yyyy". 
 #'     
 #'     When run the function outputs weekly operational targets and cummulative
 #'     annual KPI's for both 2 mg/L and 4 mg/L concentrations of dissolved 
@@ -72,7 +73,7 @@ oxy_wranglR <- function(path, weir_open = NULL, weir_closed = NULL){
                   cum4 = cumsum(W4mgL),
                   seas2 = cum2/cumsamp * 100,
                   seas4 = cum4/cumsamp * 100,
-                  Date = ymd(Date))
+                  Date = dmy(Date))
   
   ## Export KPI
   data_out <- summary %>%
@@ -282,3 +283,4 @@ oxy_wranglR <- function(path, weir_open = NULL, weir_closed = NULL){
   ggsave(w3, filename = w3_name)
   
 }
+oxy_wranglR(path = here::here())

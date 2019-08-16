@@ -36,7 +36,7 @@ oxy_kpi <- function(path, weir_open = NULL, weir_closed = NULL){
                   cum4 = cumsum(W4mgL),
                   seas2 = cum2/cumsamp * 100,
                   seas4 = cum4/cumsamp * 100,
-                  Date = ymd(Date))
+                  Date = dmy(Date))
   
   ## Export KPI
   data_out <- summary %>%
